@@ -131,7 +131,7 @@ MainWindow::MainWindow(QWidget *parent)
             geo.moveCenter(this->geometry().center());
             tip.move(geo.topLeft());
             tip.exec();
-            QDesktopServices::openUrl(QUrl("https://kikoplayproject.github.io/about"));
+            // QDesktopServices::openUrl(QUrl("https://kikoplayproject.github.io/about"));
         });
     }
 }
@@ -239,12 +239,12 @@ void MainWindow::setupUI()
     });
     buttonIcon->addAction(act_ShowLogCenter);
 
-    QAction *act_checkUpdate=new QAction(tr("Check For Updates"), this);
-    QObject::connect(act_checkUpdate,&QAction::triggered,[this](){
-        CheckUpdate checkUpdate(buttonIcon);
-        checkUpdate.exec();
-    });
-    buttonIcon->addAction(act_checkUpdate);
+    // QAction *act_checkUpdate=new QAction(tr("Check For Updates"), this);
+    // QObject::connect(act_checkUpdate,&QAction::triggered,[this](){
+    //     CheckUpdate checkUpdate(buttonIcon);
+    //     checkUpdate.exec();
+    // });
+    // buttonIcon->addAction(act_checkUpdate);
 
     QAction *act_useTip=new QAction(tr("Useage Tip"), this);
     QObject::connect(act_useTip,&QAction::triggered,[this](){

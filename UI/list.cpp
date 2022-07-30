@@ -531,26 +531,27 @@ void ListWindow::initActions()
         }
         if(restorePlayState)GlobalObjects::mpvplayer->setState(MPVPlayer::Play);
     });
-    act_PlayOnOtherDevices = new QAction(tr("Play on other devices"), this);
-    QObject::connect(act_PlayOnOtherDevices, &QAction::triggered, [this](){
-        QSortFilterProxyModel *model = static_cast<QSortFilterProxyModel *>(playlistView->model());
-        QItemSelection selection = model->mapSelectionToSource(playlistView->selectionModel()->selection());
-        if (selection.size() == 0)return;
-        QModelIndex selIndex(selection.indexes().first());
-        const PlayListItem *item = GlobalObjects::playlist->getItem(selIndex);
-        if(item->children) return;
-        QFileInfo fileInfo(item->path);
-        if(!fileInfo.exists())
-        {
-            showMessage(tr("File Not Exist"), NM_HIDE);
-            return;
-        }
-        DLNADiscover dlnaDiscover(item, this);
-        if(QDialog::Accepted == dlnaDiscover.exec())
-        {
-            showMessage(tr("Play on %1: %2").arg(dlnaDiscover.deviceName, item->title), NM_HIDE);
-        }
-    });
+    // act_PlayOnOtherDevices = new QAction(tr("Play on other devices"), this);
+    // QObject::connect(act_PlayOnOtherDevices, &QAction::triggered, [this](){
+    //     QSortFilterProxyModel *model = static_cast<QSortFilterProxyModel *>(playlistView->model());
+    //     QItemSelection selection = model->mapSelectionToSource(playlistView->selectionModel()->selection());
+    //     if (selection.size() == 0)return;
+    //     QModelIndex selIndex(selection.indexes().first());
+    //     const PlayListItem *item = GlobalObjects::playlist->getItem(selIndex);
+    //     if(item->children) return;
+    //     QFileInfo fileInfo(item->path);
+    //     if(!fileInfo.exists())
+    //     {
+    //         showMessage(tr("File Not Exist"), NM_HIDE);
+    //         return;
+    //     }
+    //     DLNADiscover dlnaDiscover(item, this);
+    //     if(QDialog::Accepted == dlnaDiscover.exec())
+    //     {
+    //         showMessage(tr("Play on %1: %2").arg(dlnaDiscover.deviceName, item->title), NM_HIDE);
+    //     }
+    // });
+    act_PlayOnOtherDevices = nullptr;
 
     act_cut=new QAction(tr("Cut"),this);
     act_cut->setShortcut(QString("Ctrl+X"));
